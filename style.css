@@ -7,6 +7,8 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 20px 0;
+    overflow-x: hidden;
+    position: relative;
 }
 
 .card {
@@ -18,6 +20,8 @@ body {
     max-width: 380px;
     width: 90%;
     border: 2px solid #ffb6c1;
+    z-index: 10; /* Kart animasyonların üstünde kalsın */
+    position: relative;
 }
 
 h1 { color: #d63384; font-size: 22px; margin-bottom: 5px; }
@@ -66,9 +70,73 @@ button:hover { background-color: #ffb6c1; color: white; }
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.4); display: flex;
     justify-content: center; align-items: center;
+    z-index: 100;
 }
 .hidden { display: none !important; }
 .popup-content {
     background: white; padding: 20px; border-radius: 15px;
     max-width: 300px; text-align: center; border: 2px solid #d63384;
+}
+
+/* ============================================== */
+/* YENİ: ARKA PLAN KALP VE KUŞ ANİMASYON STİLLERİ */
+/* ============================================== */
+
+#animation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Yükselen Kalpler */
+.floating-heart {
+    position: absolute;
+    bottom: -30px;
+    color: #ff6b81;
+    opacity: 0.7;
+    animation: floatUp linear infinite;
+    user-select: none;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(0.8) rotate(0deg);
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) scale(1.3) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+/* Uçan Kuşlar */
+.flying-bird {
+    position: absolute;
+    color: #d63384;
+    font-size: 16px;
+    opacity: 0.6;
+    animation: flyAcross linear infinite;
+    user-select: none;
+}
+
+@keyframes flyAcross {
+    0% {
+        left: -40px;
+        transform: translateY(0px) scaleX(1);
+    }
+    50% {
+        transform: translateY(-25px) scaleX(1);
+    }
+    100% {
+        left: 105vw;
+        transform: translateY(10px) scaleX(1);
+    }
 }
