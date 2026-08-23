@@ -1,7 +1,13 @@
-// 1. Son regl tarihi (10 Ağustos 2026)
-const sonReglTarihi = new Date("2026-08-03"); 
+// Varsayılan İlk Tarih (3 Ağustos 2026)
+const VARSAYILAN_TARIH = "2026-08-03";
 
-// 2. Her güne özel farklı sevgililik mesajları listesi
+// Hafızadan tarihi al, yoksa varsayılanı kullan
+function getKayitliTarih() {
+    const kayitli = localStorage.getItem("prenses_regl_tarihi");
+    return kayitli ? kayitli : VARSAYILAN_TARIH;
+}
+
+// Her güne özel farklı sevgililik mesajları listesi
 const gunlukMesajlar = {
     1: "Bugün sana ekstra nazik olma ve pamuklara sarma günü! 🌸",
     2: "Dünyanın en tatlı insanının biraz dinlenmeye ihtiyacı var. 💕",
@@ -37,7 +43,13 @@ const gunlukMesajlar = {
 
 // Otomatik Gün ve Mesaj Hesaplama Fonksiyonu
 function donguyuHesapla() {
+    const sonReglTarihi = new Date(getKayitliTarih());
     const bugun = new Date();
+    
+    // Saat farkını sıfırlamak için
+    bugun.setHours(0,0,0,0);
+    sonReglTarihi.setHours(0,0,0,0);
+
     const farkZaman = bugun - sonReglTarihi;
     const donguGunu = Math.floor(farkZaman / (1000 * 60 * 60 * 24)) + 1;
 
@@ -52,10 +64,8 @@ function donguyuHesapla() {
         fazIsmi = "Ebedi Sevgiye En Çok İhtiyaç Duyulan Dönem 💖";
     }
 
-    // Gün başlığını yazdır
     document.getElementById("dongu-gunu").innerText = `Bugün: Döngünün ${donguGunu}. Günü - ${fazIsmi}`;
     
-    // Güne özel mesajı seç (Eğer 30 günden fazlaysa mod alarak başa sarar)
     const mesajIndex = ((donguGunu - 1) % 30) + 1;
     document.getElementById("gunluk-mesaj").innerText = `"${gunlukMesajlar[mesajIndex]}"`;
 }
@@ -78,5 +88,23 @@ function popupKapat() {
     document.getElementById('popup').classList.add('hidden');
 }
 
-// Sayfa yüklendiğinde otomatik hesaplamayı çalıştır
+// Tarih Güncelleme Kutusu İşlevleri
+function tarihKutusunuAc() {
+    const box = document.getElementById('date-picker-box');
+    box.classList.toggle('hidden');
+}
+
+function tarihiKaydet() {
+    const secilenTarih = document.getElementById('yeni-tarih').value;
+    if (secilenTarih) {
+        localStorage.setItem("prenses_regl_tarihi", secilenTarih);
+        tarihKutusunuAc();
+        donguyuHesapla();
+        alert("Regl başlangıç tarihiniz başarıyla güncellendi kraliçem! 💕");
+    } else {
+        alert("Lütfen geçerli bir tarih seçiniz 🌸");
+    }
+}
+
+// Sayfa yüklendiğinde çalıştır
 donguyuHesapla();
