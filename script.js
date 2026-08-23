@@ -106,5 +106,67 @@ function tarihiKaydet() {
     }
 }
 
+// ==============================================
+// YENİ: ARKA PLANDA UÇAN KALP VE KUŞ KODLARI
+// ==============================================
+
+function kalpleriOlustur() {
+    const container = document.getElementById("animation-container");
+    if (!container) return;
+    
+    const kalpSimgeleri = ["💖", "💗", "💕", "🌸", "❤️"];
+    
+    // Sürekli rastgele kalpler türet
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("floating-heart");
+        heart.innerText = kalpSimgeleri[Math.floor(Math.random() * kalpSimgeleri.length)];
+        
+        // Rastgele yatay konum, boyut ve hız
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 14 + 12) + "px";
+        const duration = Math.random() * 4 + 5; // 5-9 saniye arası yükselme
+        heart.style.animationDuration = duration + "s";
+        
+        container.appendChild(heart);
+        
+        // Ekrandan çıkan kalpleri sil
+        setTimeout(() => {
+            heart.remove();
+        }, duration * 1000);
+    }, 600); // 0.6 saniyede bir yeni kalp
+}
+
+function kuslariOlustur() {
+    const container = document.getElementById("animation-container");
+    if (!container) return;
+    
+    const kusSimgeleri = ["🕊️", "🐦"];
+    
+    // Aralıklı olarak kuş uçur
+    setInterval(() => {
+        const bird = document.createElement("div");
+        bird.classList.add("flying-bird");
+        bird.innerText = kusSimgeleri[Math.floor(Math.random() * kusSimgeleri.length)];
+        
+        // Rastgele dikey yükseklik ve hız
+        bird.style.top = (Math.random() * 60 + 5) + "vh"; // Ekranın üst %65'lik kısmında uçsunlar
+        const duration = Math.random() * 6 + 8; // 8-14 saniye arası geçiş
+        bird.style.animationDuration = duration + "s";
+        
+        container.appendChild(bird);
+        
+        // Karşıya geçen kuşları sil
+        setTimeout(() => {
+            bird.remove();
+        }, duration * 1000);
+    }, 3500); // 3.5 saniyede bir kuş uçsun
+}
+
+// Sayfa yüklendiğinde tüm fonksiyonları başlat
+donguyuHesapla();
+kalpleriOlustur();
+kuslariOlustur();
+
 // Sayfa yüklendiğinde çalıştır
 donguyuHesapla();
