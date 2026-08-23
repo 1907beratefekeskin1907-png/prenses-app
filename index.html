@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebedi İlgi Servisi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h1>Merhaba Prensesim! ✨</h1>
+        <p class="sub-title">🌸 Ebedi sevgi & ilgi servisimiz aktiftir 🌸</p>
+
+        <div class="status-box">
+            <p><strong id="dongu-gunu">Döngü Hesaplanıyor...</strong></p>
+            <p class="quote" id="gunluk-mesaj">"Gününüz sizin kadar güzel geçsin!"</p>
+        </div>
+
+        <div class="buttons-container">
+            <button onclick="mesajGoster('tatli')">🍫 Acil Çikolata & Tatlı Lazım!</button>
+            <button onclick="mesajGoster('sarilma')">🧸 Sadece Sarılmak İstiyorum</button>
+            <button onclick="mesajGoster('cay')">☕ Sıcak Bir Çay ve İlgi Lütfen ❤️</button>
+            <button onclick="mesajGoster('enerji')">⚡ Enerjim Yerinde, Dünyayı Fethedebiliriz!</button>
+            <button onclick="mesajGoster('yalniz')">🤫 Biraz Yalnız Kalıp Kafa Dinleyeceğim</button>
+        </div>
+    </div>
+
+    <!-- Popup (Açılır Pencere) -->
+    <div id="popup" class="popup hidden">
+        <div class="popup-content">
+            <p id="popup-text"></p>
+            <button onclick="popupKapat()">💖 Kuryemi / Sevgilimi Bekliyorum</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
