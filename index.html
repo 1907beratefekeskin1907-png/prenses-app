@@ -23,6 +23,16 @@
             <button onclick="mesajGoster('enerji')">⚡ Enerjim Yerinde, Dünyayı Fethedebiliriz!</button>
             <button onclick="mesajGoster('yalniz')">🤫 Biraz Yalnız Kalıp Kafa Dinleyeceğim</button>
         </div>
+
+        <!-- Yeni Regl Tarihi Güncelleme Alanı -->
+        <div class="update-section">
+            <button class="update-btn" onclick="tarihKutusunuAc()">🌸 Yeni Regl Dönemi Başladı</button>
+            <div id="date-picker-box" class="date-picker-box hidden">
+                <label for="yeni-tarih">Başlangıç Tarihi Seç:</label>
+                <input type="date" id="yeni-tarih">
+                <button onclick="tarihiKaydet()">Kaydet & Güncelle ✨</button>
+            </div>
+        </div>
     </div>
 
     <!-- Popup (Açılır Pencere) -->
