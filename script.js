@@ -107,7 +107,7 @@ function tarihiKaydet() {
 }
 
 // ==============================================
-// YENİ: ARKA PLANDA UÇAN KALP VE KUŞ KODLARI
+// GÜNCELLENMİŞ: DAHA SIK UÇAN KALP VE KUŞ KODLARI
 // ==============================================
 
 function kalpleriOlustur() {
@@ -116,25 +116,23 @@ function kalpleriOlustur() {
     
     const kalpSimgeleri = ["💖", "💗", "💕", "🌸", "❤️"];
     
-    // Sürekli rastgele kalpler türet
+    // Daha sık kalp türet (0.25 saniyede bir)
     setInterval(() => {
         const heart = document.createElement("div");
         heart.classList.add("floating-heart");
         heart.innerText = kalpSimgeleri[Math.floor(Math.random() * kalpSimgeleri.length)];
         
-        // Rastgele yatay konum, boyut ve hız
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (Math.random() * 14 + 12) + "px";
-        const duration = Math.random() * 4 + 5; // 5-9 saniye arası yükselme
+        heart.style.fontSize = (Math.random() * 16 + 12) + "px";
+        const duration = Math.random() * 3 + 4; // 4-7 saniye arası yükselme
         heart.style.animationDuration = duration + "s";
         
         container.appendChild(heart);
         
-        // Ekrandan çıkan kalpleri sil
         setTimeout(() => {
             heart.remove();
         }, duration * 1000);
-    }, 600); // 0.6 saniyede bir yeni kalp
+    }, 250); // Aralık 600ms'den 250ms'ye düşürüldü (Çok daha yoğun)
 }
 
 function kuslariOlustur() {
@@ -143,24 +141,22 @@ function kuslariOlustur() {
     
     const kusSimgeleri = ["🕊️", "🐦"];
     
-    // Aralıklı olarak kuş uçur
+    // Daha sık kuş uçur (1.2 saniyede bir)
     setInterval(() => {
         const bird = document.createElement("div");
         bird.classList.add("flying-bird");
         bird.innerText = kusSimgeleri[Math.floor(Math.random() * kusSimgeleri.length)];
         
-        // Rastgele dikey yükseklik ve hız
-        bird.style.top = (Math.random() * 60 + 5) + "vh"; // Ekranın üst %65'lik kısmında uçsunlar
-        const duration = Math.random() * 6 + 8; // 8-14 saniye arası geçiş
+        bird.style.top = (Math.random() * 60 + 5) + "vh"; 
+        const duration = Math.random() * 4 + 6; // 6-10 saniye arası geçiş
         bird.style.animationDuration = duration + "s";
         
         container.appendChild(bird);
         
-        // Karşıya geçen kuşları sil
         setTimeout(() => {
             bird.remove();
         }, duration * 1000);
-    }, 3500); // 3.5 saniyede bir kuş uçsun
+    }, 1200); // Aralık 3500ms'den 1200ms'ye düşürüldü
 }
 
 // Sayfa yüklendiğinde tüm fonksiyonları başlat
